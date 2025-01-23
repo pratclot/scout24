@@ -1,15 +1,14 @@
 package com.example.myapplication.usecase
 
-import com.example.myapplication.CountryDto
+import com.example.myapplication.domain.Country
 
-const val CONTINENT_EU = "Europe"
 
 class GetCountriesEU(
     private val getCountries: GetCountries = GetCountries()
 ) {
-    suspend operator fun invoke(): List<CountryDto> {
+    suspend operator fun invoke(): List<Country> {
         return getCountries()
-            .filter { it.continents.contains(CONTINENT_EU) }
+            .filter { it.isEU }
     }
 
 }

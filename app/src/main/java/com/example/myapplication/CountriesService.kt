@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import com.example.myapplication.data.CountryDto
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -12,7 +13,7 @@ interface CountriesService {
     suspend fun getCountries(): List<CountryDto>
 
     @Headers("Content-Type: application/json")
-    @GET("v3.1/all?fields=name,flags,continents")
+    @GET("v3.1/all?fields=name,flags,continents,capital")
     suspend fun getCountriesNamesFlags(): List<CountryDto>
 
     companion object {

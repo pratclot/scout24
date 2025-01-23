@@ -15,6 +15,9 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
+import com.example.myapplication.domain.Country
+import com.example.myapplication.domain.uniqueId
+import com.example.myapplication.ui.component.CountryItem
 import com.example.myapplication.ui.theme.MyApplicationTheme
 import com.example.myapplication.usecase.GetCountriesEU
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,7 +26,7 @@ import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
 
-    private val countriesList = MutableStateFlow(listOf<CountryDto>())
+    private val countriesList = MutableStateFlow(listOf<Country>())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +43,11 @@ class MainActivity : ComponentActivity() {
                 val countries = countriesList.collectAsState()
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     LazyColumn(modifier = Modifier.padding(innerPadding)) {
-                        items(countries.value) { item ->
-                            Text(item.name.common)
+                        items(
+                            items = countries.value,
+//                            key = { it.uniqueId() }
+                        ) { item ->
+                            CountryItem(item)
                         }
                     }
                 }
