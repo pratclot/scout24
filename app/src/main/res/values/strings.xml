@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">My Application</string>
+    <string name="nothing_to_show_please_go_back">nothing to show, please go back!</string>
 </resources>

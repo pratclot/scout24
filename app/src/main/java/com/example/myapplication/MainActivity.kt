@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -16,7 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.domain.Country
-import com.example.myapplication.domain.uniqueId
+import com.example.myapplication.ui.activity.COUNTRY_TAG
+import com.example.myapplication.ui.activity.SecondScreen
 import com.example.myapplication.ui.component.CountryItem
 import com.example.myapplication.ui.theme.MyApplicationTheme
 import com.example.myapplication.usecase.GetCountriesEU
@@ -27,6 +29,14 @@ import kotlinx.coroutines.launch
 class MainActivity : ComponentActivity() {
 
     private val countriesList = MutableStateFlow(listOf<Country>())
+
+    private val navigateToSecondScreen = { country: Country ->
+        Intent(this, SecondScreen::class.java).apply {
+            putExtra(COUNTRY_TAG, country)
+            flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
+            startActivity(this)
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,13 +57,17 @@ class MainActivity : ComponentActivity() {
                             items = countries.value,
 //                            key = { it.uniqueId() }
                         ) { item ->
-                            CountryItem(item)
+                            CountryItem(
+                                item = item,
+                                onClick = { navigateToSecondScreen(item) }
+                            )
                         }
                     }
                 }
             }
         }
     }
+
 }
 
 @Composable
