@@ -16,11 +16,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.ui.theme.MyApplicationTheme
-import kotlinx.coroutines.Dispatchers
+import com.example.myapplication.usecase.GetCountriesEU
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MainActivity : ComponentActivity() {
 
@@ -31,7 +30,7 @@ class MainActivity : ComponentActivity() {
 
         lifecycleScope.launch {
             countriesList.update {
-                CountriesService.provide().getCountriesNamesFlags()
+                GetCountriesEU()()
             }
         }
 
