@@ -11,6 +11,10 @@ interface CountriesService {
     @GET("v3.1/all")
     suspend fun getCountries(): List<CountryDto>
 
+    @Headers("Content-Type: application/json")
+    @GET("v3.1/all?fields=name,flags")
+    suspend fun getCountriesNamesFlags(): List<CountryDto>
+
     companion object {
         fun provide(): CountriesService {
             val retrofit: Retrofit = Retrofit.Builder()

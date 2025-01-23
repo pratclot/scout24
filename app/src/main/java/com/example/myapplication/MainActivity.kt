@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
 
         lifecycleScope.launch {
             countriesList.update {
-                CountriesService.provide().getCountries()
+                CountriesService.provide().getCountriesNamesFlags()
             }
         }
 

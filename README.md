@@ -22,4 +22,7 @@ If more time is needed you might go overboard. Remember you can also comment ope
 
 # candidate space
 
+- initial code was not functional because country data service would return incomplete JSON doc, and this would crash the app on start. Passing additional URL parameters fixes this issue.
+- 
+
 ...
