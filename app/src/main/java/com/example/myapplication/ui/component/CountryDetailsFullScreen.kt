@@ -1,9 +1,8 @@
 package com.example.myapplication.ui.component
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Text
@@ -14,6 +13,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.myapplication.ui.theme.Typography
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
+import com.google.maps.android.compose.GoogleMap
+import com.google.maps.android.compose.rememberCameraPositionState
 
 @Preview
 @Composable
@@ -22,6 +25,8 @@ private fun CountryDetailsFullScreenPreview() = CountryDetailsFullScreen(
     capital = "Dresden",
     flagURL = "none",
     flagDescription = "none",
+    lat = 51.0,
+    lng = 13.75,
     modifier = Modifier.background(Color.White)
 )
 
@@ -31,6 +36,8 @@ fun CountryDetailsFullScreen(
     capital: String,
     flagURL: String,
     flagDescription: String,
+    lat: Double,
+    lng: Double,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
@@ -52,6 +59,14 @@ fun CountryDetailsFullScreen(
             style = Typography.bodyLarge,
             textAlign = TextAlign.Center,
             modifier = Modifier.fillMaxWidth()
+        )
+        val capitalLocation = LatLng(lat, lng)
+        val cameraPositionState = rememberCameraPositionState {
+            position = CameraPosition.fromLatLngZoom(capitalLocation, 10f)
+        }
+        GoogleMap(
+            modifier = Modifier.fillMaxSize(),
+            cameraPositionState = cameraPositionState
         )
     }
 }

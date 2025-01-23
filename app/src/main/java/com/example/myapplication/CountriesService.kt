@@ -13,7 +13,7 @@ interface CountriesService {
     suspend fun getCountries(): List<CountryDto>
 
     @Headers("Content-Type: application/json")
-    @GET("v3.1/all?fields=name,flags,continents,capital")
+    @GET("v3.1/all?fields=name,flags,continents,capital,capitalInfo")
     suspend fun getCountriesNamesFlags(): List<CountryDto>
 
     companion object {

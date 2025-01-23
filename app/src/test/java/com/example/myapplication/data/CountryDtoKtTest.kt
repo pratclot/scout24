@@ -16,6 +16,7 @@ class CountryDtoKtTest {
             continents = emptyList(),
             capital = emptyList(),
             flags = CountryDto.Flags(png = "png", alt = "alt"),
+            capitalInfo = CountryDto.CapitalInfo(latlng = emptyList())
         )
 
         dto.toDomain().run {
@@ -24,6 +25,8 @@ class CountryDtoKtTest {
             assert(flagURL == "png")
             assert(!isEU)
             assert(flagDescription == "alt")
+            assert(lat == 20.0)
+            assert(lng == 20.0)
         }
     }
 }

@@ -44,7 +44,9 @@ private fun CountryItemPreview() = CountryItem(
         capital = "Dresden",
         flagURL = "none",
         isEU = true,
-        flagDescription = "n/a"
+        flagDescription = "n/a",
+        lat = 0.0,
+        lng = 0.0,
     ),
     onClick = {},
     modifier = Modifier.background(Color.White)

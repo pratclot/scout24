@@ -42,7 +42,9 @@ class SecondScreen : ComponentActivity() {
                                 name = it.name,
                                 capital = it.capital,
                                 flagURL = it.flagURL,
-                                flagDescription = it.flagDescription
+                                flagDescription = it.flagDescription,
+                                lat = it.lat,
+                                lng = it.lng
                             )
                         } ?: Text(stringResource(R.string.nothing_to_show_please_go_back))
                     }
